@@ -4,6 +4,10 @@
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>Salu & Vaisakh — 24 October 2026</title>
+<meta property="og:title" content="Salu & Vaisakh — 24 October 2026"/>
+<meta property="og:description" content="With love, we invite you to celebrate our wedding."/>
+<meta property="og:image" content="https://yed-hu.github.io/salu-vaisakh-wedding/couple.jpg"/>
+<meta property="og:type" content="website"/>
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='30' fill='%235A1F1F'/%3E%3Cg fill='none' stroke='%23C5A059' stroke-width='3.5' stroke-linecap='round'%3E%3Cpath d='M27 24 Q18 24 18 28 Q18 32 23 32 Q28 32 28 36 Q28 40 19 40'/%3E%3Cpath d='M37 24 L42 40 L47 24'/%3E%3C/g%3E%3C/svg%3E"/>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=IBM+Plex+Mono&family=Cinzel:wght@400;600;700&display=swap" rel="stylesheet"/>
 <style>
@@ -205,6 +209,15 @@ nav{position:sticky;top:0;z-index:100;display:flex;align-items:center;justify-co
 .fam-parents{font-size:14px;font-weight:400;color:#4A3F3F;line-height:1.6;margin-bottom:12px}
 .fam-addr{font-family: 'Inter', sans-serif;font-size:13px;color:var(--text-muted);line-height:1.7}
 .fam-divider{background:rgba(90, 31, 31, 0.1)}
+
+/* COUPLE PORTRAIT */
+.portrait-section{padding:80px 24px;text-align:center;background:var(--bg-mild);border-bottom:1px solid rgba(90,31,31,0.1)}
+.portrait-frame{display:inline-block;position:relative;padding:14px;background:#FFFDF8;border:1px solid rgba(197,160,89,0.4);box-shadow:0 14px 50px rgba(90,31,31,0.12)}
+.portrait-frame img{display:block;width:min(78vw,360px);height:auto}
+.portrait-frame::after{content:'';position:absolute;inset:6px;border:1px solid rgba(197,160,89,0.5);pointer-events:none}
+.portrait-caption{margin-top:32px;font-family:'Cinzel',serif;font-size:22px;font-weight:600;color:var(--primary)}
+.portrait-sub{margin-top:8px;font-size:12px;letter-spacing:0.25em;text-transform:uppercase;color:var(--text-muted)}
+@media(max-width:640px){.portrait-section{padding:56px 20px}}
 
 /* EVENTS */
 .event{padding:60px 48px;border-bottom:1px solid rgba(90, 31, 31, 0.1)}
@@ -595,6 +608,13 @@ footer{padding:80px 48px;text-align:center;border-top:1px solid rgba(90, 31, 31,
     </div>
   </section>
   
+  <section class="portrait-section reveal">
+    <div class="portrait-frame">
+      <img src="couple.jpeg" alt="Salu & Vaisakh"/>
+    </div>
+    <p class="portrait-caption">Salu &amp; Vaisakh</p>
+    <p class="portrait-sub">Two souls, one journey</p>
+  </section>
 
   <section class="event reveal" id="ceremony">
     <p class="event-tag">The Wedding</p>
