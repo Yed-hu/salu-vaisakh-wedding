@@ -39,7 +39,7 @@ body{font-family:'Inter',sans-serif;font-weight:300;background:#FDFBF7;color:var
 .ganesha-foot {
   width: 150px;
   height: auto;
-  margin: 0 auto 28px;
+  margin: 0 auto 18px;
   mix-blend-mode: multiply;
   opacity: 0.92;
 }
@@ -364,11 +364,12 @@ select.form-input option{background:var(--primary);color:#FDFBF7}
 }
 
 /* FOOTER */
-footer{padding:80px 48px;text-align:center;border-top:1px solid rgba(90, 31, 31, 0.1);background: var(--bg-mild)}
+
+footer{padding:56px 48px;text-align:center;border-top:1px solid rgba(90, 31, 31, 0.1);background: var(--bg-mild)}
 .foot-mono{font-family: 'Cinzel', serif;font-size:36px;font-weight:600;letter-spacing:2px;margin-bottom:14px;color: var(--primary)}
 .foot-date{font-family:'IBM Plex Mono',monospace;font-size:13px;color:var(--text-muted);letter-spacing:0.2em;margin-bottom:8px}
-.foot-venue{font-size:14px;font-weight:400;color:var(--text-muted);margin-bottom:56px}
-.foot-line{width:1px;height:44px;background:var(--gold-accent);margin:0 auto 44px}
+.foot-venue{font-size:14px;font-weight:400;color:var(--text-muted);margin-bottom:36px}
+.foot-line{width:1px;height:32px;background:var(--gold-accent);margin:0 auto 44px}
 .foot-note{font-size:11px;letter-spacing:0.35em;text-transform:uppercase;color:var(--secondary);font-weight: 500}
 .foot-note-sub{font-size:12px;letter-spacing:0.1em;color:var(--text-muted);font-weight:300;margin-top:10px}
 
@@ -732,6 +733,7 @@ footer{padding:80px 48px;text-align:center;border-top:1px solid rgba(90, 31, 31,
     <p class="foot-venue">Sree Narayana Auditorium, Ramalakkalmedu</p>
     <div class="foot-line"></div>
     <p class="foot-note">May your presence be our greatest blessing</p>
+    <p style="margin-top:32px;font-size:10px;letter-spacing:0.15em;color:var(--text-muted);opacity:0.7">© <span id="year"></span> · Designed with love by Yedhu</p>
   </footer>
 
 </div>
@@ -951,6 +953,7 @@ document.getElementById('rsvp-btn').addEventListener('click', async function(){
     btn.style.opacity = '1';
   }
 });
+document.getElementById('year').textContent = new Date().getFullYear();
 </script>
 </body>
 </html>
