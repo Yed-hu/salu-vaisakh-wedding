@@ -540,20 +540,20 @@ footer{padding:56px 48px;text-align:center;border-top:1px solid rgba(90, 31, 31,
 
 #bgm-toggle{
   position:fixed;
-  bottom:20px;
-  right:20px;
+  bottom:16px;
+  right:16px;
   z-index:200;
-  display:flex;
+  display:none;
   align-items:center;
   gap:8px;
-  height:44px;
-  padding:0 18px;
+  height:40px;
+  padding:0 14px;
   border-radius:24px;
   border:1px solid var(--gold-accent);
   background:rgba(90,31,31,0.92);
   color:var(--gold-accent);
   font-family:'Inter',sans-serif;
-  font-size:12px;
+  font-size:11px;
   font-weight:500;
   letter-spacing:0.08em;
   cursor:pointer;
@@ -838,6 +838,7 @@ function openInvite(){
   }).catch(function(){
     // If the browser still blocks it, the button stays available to start manually
   });
+  document.getElementById('bgm-toggle').style.display = 'flex';
 }
 
 function startCountdown(){
@@ -1024,6 +1025,30 @@ document.getElementById('year').textContent = new Date().getFullYear();
     }
   });
 })();
+
+// Pause music when the user leaves the tab, switches apps, or locks the screen
+document.addEventListener('visibilitychange', function(){
+  var bgm = document.getElementById('bgm');
+  var btn = document.getElementById('bgm-toggle');
+  var txt = document.getElementById('bgm-text');
+  if(document.hidden){
+    if(!bgm.paused){
+      bgm.pause();
+      bgm.dataset.wasPlaying = 'true';   // remember it was on
+      btn.classList.remove('playing');
+      if(txt) txt.textContent = 'Play Music';
+    }
+  } else {
+    // Back in view — resume only if it was playing before they left
+    if(bgm.dataset.wasPlaying === 'true'){
+      bgm.play().then(function(){
+        btn.classList.add('playing');
+        if(txt) txt.textContent = 'Playing';
+      }).catch(function(){});
+      bgm.dataset.wasPlaying = 'false';
+    }
+  }
+});
 
 </script>
 </body>
