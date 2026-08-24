@@ -537,9 +537,46 @@ footer{padding:56px 48px;text-align:center;border-top:1px solid rgba(90, 31, 31,
   .radio-group{flex-direction:column;gap:14px}
   footer{padding:60px 24px}
 }
+
+#bgm-toggle{
+  position:fixed;
+  bottom:20px;
+  right:20px;
+  z-index:200;
+  display:flex;
+  align-items:center;
+  gap:8px;
+  height:44px;
+  padding:0 18px;
+  border-radius:24px;
+  border:1px solid var(--gold-accent);
+  background:rgba(90,31,31,0.92);
+  color:var(--gold-accent);
+  font-family:'Inter',sans-serif;
+  font-size:12px;
+  font-weight:500;
+  letter-spacing:0.08em;
+  cursor:pointer;
+  box-shadow:0 4px 16px rgba(90,31,31,0.25);
+  transition:transform 0.2s, background 0.2s;
+  -webkit-tap-highlight-color:transparent;
+}
+#bgm-toggle:hover{transform:scale(1.05)}
+#bgm-toggle.playing{background:var(--gold-accent);color:#FDFBF7;border-color:var(--gold-accent)}
+#bgm-icon{font-size:16px;line-height:1}
+#bgm-toggle.playing #bgm-icon{animation:notePulse 1.6s ease-in-out infinite}
+@keyframes notePulse{0%,100%{transform:scale(1)}50%{transform:scale(1.18)}}
+
 </style>
 </head>
 <body>
+
+<audio id="bgm" loop preload="none" src="music.mp3"></audio>
+<button id="bgm-toggle" aria-label="Play music">
+  <span id="bgm-icon">&#9835;</span>
+  <span id="bgm-text">Play Music</span>
+</button>
+
 <div id="particles-container"></div>
 <!-- GATE -->
 <div id="gate">
@@ -788,6 +825,19 @@ function openInvite(){
   
   // FIX: Force the browser to check the scroll reveals 100ms after the gate opens!
   setTimeout(revealOnScroll, 100); 
+
+    // Start background music now that the user has interacted (tapped Open)
+  var bgm = document.getElementById('bgm');
+  var btn = document.getElementById('bgm-toggle');
+  bgm.volume = 0.35;
+  bgm.play().then(function(){
+    btn.classList.add('playing');
+    var txt = document.getElementById('bgm-text');
+    if(txt) txt.textContent = 'Playing';
+    btn.setAttribute('aria-label','Pause music');
+  }).catch(function(){
+    // If the browser still blocks it, the button stays available to start manually
+  });
 }
 
 function startCountdown(){
@@ -954,6 +1004,27 @@ document.getElementById('rsvp-btn').addEventListener('click', async function(){
   }
 });
 document.getElementById('year').textContent = new Date().getFullYear();
+
+(function(){
+  var bgm = document.getElementById('bgm');
+  var btn = document.getElementById('bgm-toggle');
+  var txt = document.getElementById('bgm-text');
+  bgm.volume = 0.35;
+  btn.addEventListener('click', function(){
+    if(bgm.paused){
+      bgm.play();
+      btn.classList.add('playing');
+      txt.textContent = 'Playing';
+      btn.setAttribute('aria-label','Pause music');
+    } else {
+      bgm.pause();
+      btn.classList.remove('playing');
+      txt.textContent = 'Play Music';
+      btn.setAttribute('aria-label','Play music');
+    }
+  });
+})();
+
 </script>
 </body>
 </html>
